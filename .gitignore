@@ -1,0 +1,4 @@
+.env
+node_modules/
+appointment-system/target/
+healthcare-appointment-frontend/dist/

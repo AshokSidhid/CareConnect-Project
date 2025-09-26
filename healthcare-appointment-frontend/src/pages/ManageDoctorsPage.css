@@ -1,0 +1,72 @@
+.admin-dashboard-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+.register-doctor-widget {
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.register-doctor-widget h2 {
+  margin-top: 0;
+}
+
+/* Add these styles to the file */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  background-color: var(--surface-color);
+  color: var(--text-color);
+}
+
+.form-select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.25);
+}
+
+/* Add these styles to the file */
+.existing-doctors-widget {
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.doctors-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.doctors-table th, .doctors-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.doctors-table th {
+  font-weight: 600;
+}
+
+.btn-delete {
+  background-color: var(--danger-color, #dc3545);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+}

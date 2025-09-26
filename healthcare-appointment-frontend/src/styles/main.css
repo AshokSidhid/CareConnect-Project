@@ -1,0 +1,78 @@
+/* src/styles/main.css */
+
+/* 1. CSS Variables for our Healthcare Theme */
+/* src/styles/main.css */
+
+/* 1. Keep your existing :root variables for the default (light) theme */
+:root {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --success-color: #198754;
+  --danger-color: #dc3545;
+  
+  /* Redefine colors for better theme control */
+  --background-color: #f8f9fa;
+  --surface-color: #ffffff; /* For cards, modals, etc. */
+  --text-color: #212529;
+  --text-color-muted: #6c757d;
+  --border-color: #dee2e6;
+
+  --font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* 2. Add this new rule for the dark theme */
+[data-theme='dark'] {
+  --primary-color: #409eff; /* A slightly brighter blue for dark backgrounds */
+  --secondary-color: #adb5bd;
+
+  --background-color: #121212; /* A common dark mode background */
+  --surface-color: #1e1e1e; /* A slightly lighter surface for cards */
+  --text-color: #e9ecef;
+  --text-color-muted: #adb5bd;
+  --border-color: #495057;
+}
+
+/* 3. Update the body to use the new variables */
+body {
+  font-family: var(--font-family-sans-serif);
+  line-height: 1.5;
+  background-color: var(--background-color); /* Use the new variable */
+  color: var(--text-color); /* Use the new variable */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+/* ... keep the rest of your main.css file ... */
+/* 2. A modern CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Global Body Styles */
+
+
+/* 4. Basic Link Styling */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Add this to the end of src/styles/main.css */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1; /* This makes the main content area expand and push the footer down */
+}

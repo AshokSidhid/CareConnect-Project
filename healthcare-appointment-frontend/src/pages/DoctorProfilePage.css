@@ -1,0 +1,120 @@
+/* In src/pages/DoctorProfilePage.css */
+
+.profile-container {
+  padding: 2rem;
+}
+
+.profile-card {
+  max-width: 800px; /* Set a max-width */
+  margin: 0 auto; /* Center the card horizontally */
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Add a new class for content within the card for better spacing */
+.profile-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.profile-card h2 {
+  font-size: 1.5rem;
+  color: var(--text-color-muted);
+  margin-bottom: 1.5rem;
+  font-weight: normal;
+}
+
+.doctor-bio {
+  font-size: 1rem;
+  color: var(--text-color-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6; /* Improve readability */
+}
+
+.profile-card p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: var(--text-color);
+}
+
+.profile-card p strong {
+  color: var(--text-color-dark);
+}
+
+.schedule-widget {
+  margin-top: 2.5rem; /* More space above schedule */
+  border-top: 1px solid var(--border-color);
+  padding-top: 2.5rem;
+}
+
+.schedule-widget h3 {
+  margin-top: 0;
+  text-align: left;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--text-color-dark);
+}
+
+.schedule-list {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.schedule-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Align items vertically */
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--background-color); /* Lighter border */
+  font-size: 1rem;
+}
+
+.schedule-list li:last-child {
+  border-bottom: none;
+}
+
+.schedule-list li span:first-child {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.schedule-list li span:last-child {
+  color: var(--text-color-muted);
+}
+
+.book-appointment-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 2.5rem; /* Space above button */
+}
+
+.book-appointment-btn:hover {
+  background-color: #0b5ed7;
+}
+
+.login-prompt {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: var(--text-color-muted);
+}
+
+.login-prompt a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-prompt a:hover {
+  text-decoration: underline;
+}

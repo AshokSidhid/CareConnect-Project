@@ -1,0 +1,38 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql_db_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: healthcare_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./appointment-system
+    container_name: backend_container
+    restart: on-failure
+    depends_on:
+      - mysql-db
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_HOST=mysql-db
+      - DB_USER=root
+      - DB_PASS=${MYSQL_PASSWORD}
+
+  frontend:
+    build: ./healthcare-appointment-frontend
+    container_name: frontend_container
+    restart: on-failure
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:

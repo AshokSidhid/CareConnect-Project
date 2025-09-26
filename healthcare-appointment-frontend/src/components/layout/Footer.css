@@ -1,0 +1,36 @@
+/* src/components/layout/Footer.css */
+
+.footer-container {
+  background-color: var(--surface-color); /* CHANGED */
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: var(--text-color-muted); /* ADDED */
+}
+
+/* ... keep the rest of the file the same ... */
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-links a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+

@@ -1,0 +1,66 @@
+.home-container {
+  /* No specific styles needed for the main container */
+}
+
+.hero-section {
+  background-color: var(--surface-color);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  color: var(--text-color-muted);
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+}
+
+.cta-button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: background-color 0.2s;
+}
+
+.cta-button:hover {
+  background-color: #0b5ed7;
+  text-decoration: none;
+}
+
+.features-section {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: var(--surface-color);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.feature-card h3 {
+  margin-bottom: 1rem;
+}

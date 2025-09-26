@@ -1,0 +1,41 @@
+/* src/components/layout/AdminLayout.css */
+.admin-layout {
+  display: flex;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background-color: var(--surface-color);
+  border-right: 1px solid var(--border-color);
+  min-height: calc(100vh - 65px); /* Full height minus navbar */
+  padding: 1rem;
+}
+
+.admin-sidebar nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-sidebar nav a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--text-color-muted);
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
+}
+
+.admin-sidebar nav a:hover {
+  background-color: var(--background-color);
+}
+
+.admin-sidebar nav a.active {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.admin-content {
+  flex-grow: 1;
+  padding: 2rem;
+}
