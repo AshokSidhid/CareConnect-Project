@@ -50,19 +50,17 @@ CareConnect-Project/
     ```
     MYSQL_PASSWORD=your_secure_password
     ```
-3.  **Run the Application**: Use the startup script or the `docker-compose` command.
+3.  **Build the Backend**: Before starting Docker, you must compile the backend code. Navigate into the backend folder and run the Maven package command.
     ```bash
-    # On Windows
-    start-dev.bat
-
-    # On Mac/Linux
-    ./start-dev.sh
+    cd appointment-system
+    mvn clean package -DskipTests
+    cd ..
     ```
-    Alternatively, you can run the command directly:
+4.  **Run the Application**: Now, from the root `CareConnect-Project` folder, start the application.
     ```bash
     docker-compose up --build
     ```
-4.  **Access the Application**:
+5.  **Access the Application**:
     * Frontend (React App): **`http://localhost:3000`**
     * Backend API: **`http://localhost:8085`**
 
