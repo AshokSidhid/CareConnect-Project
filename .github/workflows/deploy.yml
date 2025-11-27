@@ -37,7 +37,7 @@ jobs:
 
       - name: Build
         working-directory: ./healthcare-appointment-frontend
-        run: npm run build
+        run: npm run build -- --base=/CareConnect-Project/
 
       # This uploads the 'dist' folder to GitHub's server
       - name: Upload artifact
