@@ -1,0 +1,70 @@
+name: Run Full Stack Project
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test-full-stack:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 1. Create the environment file needed by docker-compose
+      - name: Create .env file
+        run: echo "MYSQL_PASSWORD=password123" > .env
+
+      # 2. Build the Backend JAR (Required before Docker build)
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build Backend JAR
+        run: mvn -f appointment-system/pom.xml clean package -DskipTests
+
+      # 3. Spin up the entire stack using Docker Compose
+      - name: Start Services
+        run: docker-compose up -d --build
+
+      # 4. Wait for services to be ready
+      # We check the backend health or just sleep to give MySQL time to initialize
+      - name: Wait for Services to Start
+        run: sleep 60
+
+      # 5. Verify Backend is Running
+      # We use curl to check if the backend API responds
+      - name: Check Backend API
+        run: |
+          status=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:8085/api/doctors)
+          if [ "$status" -eq 200 ] || [ "$status" -eq 403 ]; then
+            echo "Backend is up! Status: $status"
+          else
+            echo "Backend failed to respond. Status: $status"
+            docker-compose logs backend
+            exit 1
+          fi
+
+      # 6. Verify Frontend is Running
+      # We check if the frontend returns the HTML page
+      - name: Check Frontend
+        run: |
+          status=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:3000)
+          if [ "$status" -eq 200 ]; then
+            echo "Frontend is up! Status: $status"
+          else
+            echo "Frontend failed to respond. Status: $status"
+            docker-compose logs frontend
+            exit 1
+          fi
+
+      # 7. Tear down (Optional, runner is destroyed anyway)
+      - name: Stop Services
+        if: always()
+        run: docker-compose down
