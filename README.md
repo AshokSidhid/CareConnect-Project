@@ -97,6 +97,57 @@ If you have a Kubernetes cluster (like Docker Desktop K8s or Minikube), you can 
 
 ---
 
+## ✅ Verification Steps
+
+Use these steps to confirm that your Kubernetes deployment was successful and is fully operational.
+
+### 1. Verify Kubernetes (The "State")
+Concept: Prove that the "manifests" (YAML files) Ansible applied actually created running resources.
+
+**A. Check the Pods (The Containers)**
+* **Command:**
+    ```bash
+    kubectl get pods
+    ```
+* **Explanation:**
+    * Show that there are **3 Pods** (`frontend`, `backend`, `mysql`).
+    * **STATUS: `Running`**: They are alive.
+    * **READY: `1/1`**: The internal processes are healthy.
+
+**B. Check the Services (The Networking)**
+* **Command:**
+    ```bash
+    kubectl get services
+    ```
+* **Explanation:**
+    * **`mysql` (ClusterIP)**: Only visible internally. Backend talks to this.
+    * **`backend` (LoadBalancer)**: Exposed on `localhost:8085`.
+    * **`frontend` (LoadBalancer)**: Exposed on `localhost:80`. This is the entry point for users.
+
+**C. Check the Secrets (The Security)**
+* **Command:**
+    ```bash
+    kubectl get secrets
+    ```
+* **Explanation:**
+    * Show `db-credentials`.
+    * This confirms that passwords are **not** hardcoded in the YAML files; they are stored securely here and injected into the containers as Environment Variables.
+
+### 2. Verify Functionality (The "End-to-End" Test)
+Concept: Prove the Frontend talks to the Backend, and the Backend talks to the Database.
+
+**A. Frontend Loading (UI Check)**
+* **Action:** Open browser to **`http://localhost`**.
+* **Result:** The "CareConnect" homepage loads.
+* **Proof:** This proves the **Frontend Pod** is running and Nginx is serving files.
+
+**B. Backend Connectivity (API Check)**
+* **Action:** Open browser to **`http://localhost:8085/api/doctors`**.
+* **Result:** You see a JSON list of doctors (or an empty list `[]` if public access is disabled).
+* **Proof:** This proves the **Backend Pod** is running and accepting HTTP requests.
+
+---
+
 ## 🔐 Default Login Credentials
 
 The application creates sample data on startup (via `DataLoader.java`) if the database is empty.
