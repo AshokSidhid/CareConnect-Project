@@ -53,7 +53,14 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:3000"));
+        // Allow specific origins including the Kubernetes service origin if needed
+        // For local K8s dev, allowing specific localhost variations is key
+        configuration.setAllowedOrigins(Arrays.asList(
+                "http://localhost:5173", // Vite local
+                "http://localhost:3000", // Docker Compose
+                "http://localhost",      // Kubernetes Frontend (default port 80)
+                "http://127.0.0.1"       // Alternative localhost
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
         configuration.setAllowCredentials(true);

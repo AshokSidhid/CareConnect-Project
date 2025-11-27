@@ -1,0 +1,51 @@
+---
+- name: Deploy CareConnect to Kubernetes
+  hosts: local
+  gather_facts: false
+  vars:
+    # Define your secrets here (In a real setup, use Ansible Vault!)
+    db_password: "password123"
+
+  tasks:
+    - name: Ensure Python Kubernetes library is installed
+      ansible.builtin.apt:
+        name: python3-kubernetes
+        state: present
+        update_cache: yes
+      become: yes
+
+    # 1. Create the Secret (Essential for your updated YAMLs)
+    - name: Create Database Credentials Secret
+      kubernetes.core.k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Secret
+          metadata:
+            name: db-credentials
+            namespace: default
+          type: Opaque
+          stringData:
+            password: "{{ db_password }}"
+
+    # 2. Deploy MySQL
+    - name: Deploy MySQL Database
+      kubernetes.core.k8s:
+        state: present
+        src: ../k8s/mysql-deployment.yaml
+
+    # 3. Deploy Backend
+    - name: Deploy Backend API
+      kubernetes.core.k8s:
+        state: present
+        src: ../k8s/backend-deployment.yaml
+
+    # 4. Deploy Frontend
+    - name: Deploy Frontend UI
+      kubernetes.core.k8s:
+        state: present
+        src: ../k8s/frontend-deployment.yaml
+
+    - name: Verify Deployment
+      debug:
+        msg: "Deployment complete! Access the app at http://localhost"
